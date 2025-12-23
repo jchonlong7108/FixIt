@@ -32,7 +32,7 @@ export class UserService {
   // 3. Crear Usuario (Desde Admin)
   createUser(user: any) {
     // Usamos la ruta de registro pública, pero sin loguearnos automáticamente
-    return this.http.post<any>('http://localhost:3000/api/auth/register', user);
+    return this.http.post<any>('https://fixit-v615.onrender.com/api/auth/register', user);
   }
 
   // 4. Editar Usuario
