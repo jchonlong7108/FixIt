@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth';
 })
 export class UserList implements OnInit {
   users: any[] = [];
-  URL = 'http://localhost:3000/api/users';
+  URL = 'https://fixit-v615.onrender.com/api/users';
 
   constructor(private http: HttpClient, private authService: AuthService, private cdr: ChangeDetectorRef) {}
 
