@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <div class="card mt-4">
+      <div class="card-header bg-primary text-white">
+        <h3>{{ editMode ? 'Editar Usuario' : 'Nuevo Usuario' }}</h3>
+      </div>
+      <div class="card-body">
+        <form (submit)="submitUser()">
+          
+          <div class="mb-3">
+            <label>Nombre</label>
+            <input type="text" [(ngModel)]="user.nombre" name="nombre" class="form-control" required>
+          </div>
+
+          <div class="mb-3">
+            <label>Email</label>
+            <input type="email" [(ngModel)]="user.email" name="email" class="form-control" required [disabled]="editMode">
+          </div>
+
+          <div class="mb-3">
+            <label>Contraseña</label>
+            <input type="password" [(ngModel)]="user.password" name="password" class="form-control" 
+                   [required]="!editMode" placeholder="{{ editMode ? 'Dejar vacío para no cambiar' : '' }}">
+          </div>
+
+          <div class="mb-3">
+            <label>Rol</label>
+            <select [(ngModel)]="user.rol" name="rol" class="form-select">
+              <option value="USER">Usuario Normal</option>
+              <option value="ADMIN">Administrador</option>
+            </select>
+          </div>
+
+          <button class="btn btn-primary w-100">Guardar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

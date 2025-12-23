@@ -1,0 +1,55 @@
+<div class="container">
+  
+  <h3 class="mb-3 text-danger">🔴 Pendientes</h3>
+  <div class="row mb-5">
+    <div class="col-md-12" *ngIf="pendientes.length === 0">
+      <p class="text-muted">No hay tareas pendientes.</p>
+    </div>
+
+    <div class="col-md-6 mb-3" *ngFor="let task of pendientes">
+      <div class="card border-danger h-100">
+        <div class="card-header bg-danger text-white d-flex justify-content-between">
+            <span>{{ task.prioridad }}</span>
+            <small>{{ task.lugar }}</small>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ task.titulo }}</h5>
+          <p class="card-text">{{ task.descripcion }}</p>
+          <p class="text-muted"><small>Creado por: {{ task.creado_por.nombre }}</small></p>
+        </div>
+        
+        <div class="card-footer" *ngIf="authService.isAdmin()">
+          <button class="btn btn-success w-100 mb-2" (click)="finalizarTarea(task)">
+            ✅ Atender y Finalizar
+          </button>
+          <div class="d-flex justify-content-between">
+             <button class="btn btn-outline-primary btn-sm" [routerLink]="['/tasks/edit', task._id]">Editar</button>
+             <button class="btn btn-outline-danger btn-sm" (click)="borrarTarea(task._id)">Borrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="mb-3 text-success">🟢 Finalizadas (Historial)</h3>
+  <div class="row">
+    <div class="col-md-6 mb-3" *ngFor="let task of completadas">
+      <div class="card border-success h-100 bg-light">
+        <div class="card-body">
+          <h5 class="card-title text-success"><s>{{ task.titulo }}</s></h5>
+          <p class="card-text text-muted">{{ task.descripcion }}</p>
+          
+          <div class="alert alert-success mt-2">
+            <strong>Resolución:</strong> {{ task.resolucion }}
+          </div>
+        </div>
+        <div class="card-footer" *ngIf="authService.isAdmin()">
+            <button class="btn btn-sm btn-danger" (click)="borrarTarea(task._id)">Eliminar del historial</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <div class="card">
+      <div class="card-header bg-dark text-white text-center">
+        <h3>{{ editMode ? 'Editar Tarea' : 'Nueva Tarea' }}</h3>
+      </div>
+      <div class="card-body">
+        <form (submit)="submitTask()">
+          
+          <div class="mb-3">
+            <label>Título del Problema</label>
+            <input type="text" [(ngModel)]="task.titulo" name="titulo" class="form-control" placeholder="Ej: Fuga de agua" required autofocus>
+          </div>
+
+          <div class="mb-3">
+            <label>Lugar / Ubicación</label>
+            <input type="text" [(ngModel)]="task.lugar" name="lugar" class="form-control" placeholder="Ej: Baño Piso 2" required>
+          </div>
+
+          <div class="mb-3">
+            <label>Prioridad</label>
+            <select class="form-select" [(ngModel)]="task.prioridad" name="prioridad">
+              <option value="BAJA">Baja</option>
+              <option value="MEDIA">Media</option>
+              <option value="ALTA">Alta</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label>Descripción Detallada</label>
+            <textarea rows="3" [(ngModel)]="task.descripcion" name="descripcion" class="form-control" placeholder="Describa el problema..."></textarea>
+          </div>
+
+          <button class="btn btn-success w-100">
+            Guardar
+          </button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

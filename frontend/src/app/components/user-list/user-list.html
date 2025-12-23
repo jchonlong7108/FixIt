@@ -1,0 +1,42 @@
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Gestión de Usuarios</h2>
+        <button class="btn btn-primary" routerLink="/users/create">
+            + Nuevo Usuario
+        </button>
+    </div>
+
+    <table class="table table-striped shadow-sm">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{ user.nombre }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <span [class]="user.rol === 'ADMIN' ? 'badge bg-warning text-dark' : 'badge bg-info'">
+                        {{ user.rol }}
+                    </span>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-outline-primary me-2" 
+                            [routerLink]="['/users/edit', user._id]">
+                        Editar
+                    </button>
+
+                    <button class="btn btn-danger btn-sm" 
+                            *ngIf="user.rol !== 'ADMIN'" 
+                            (click)="deleteUser(user._id)">
+                            Eliminar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
