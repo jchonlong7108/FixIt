@@ -16,7 +16,7 @@ import { authGuard } from './guards/auth-guard';
 const routes: Routes = [
   { path: '', redirectTo: '/tasks', pathMatch: 'full' }, // Ruta por defecto
   { path: 'login', component: Login },
-  { path: 'register', component: Register },
+  
   
   // Rutas Protegidas (Solo si estás logueado)
   { path: 'tasks', component: TaskList, canActivate: [authGuard] },
