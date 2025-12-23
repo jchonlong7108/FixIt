@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  private URL = 'http://localhost:3000/api/auth'; // La ruta de tu backend
+  private URL = 'https://fixit-v615.onrender.com/api/auth'; // La ruta de tu backend
 
   constructor(private http: HttpClient, private router: Router) { }
 

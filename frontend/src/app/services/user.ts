@@ -7,7 +7,7 @@ import { AuthService } from './auth';
 })
 export class UserService {
 
-  private URL = 'http://localhost:3000/api/users';
+  private URL = 'https://fixit-v615.onrender.com/api/users';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

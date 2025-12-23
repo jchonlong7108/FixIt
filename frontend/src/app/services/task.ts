@@ -8,7 +8,7 @@ import { AuthService } from './auth';
 })
 export class TaskService {
 
-  private URL = 'http://localhost:3000/api/tasks';
+  private URL = 'https://fixit-v615.onrender.com/api/tasks';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
