@@ -4,6 +4,14 @@ const router = express.Router();
 const User = require('../models/User'); // Importamos el modelo
 const bcrypt = require('bcryptjs'); // Para encriptar
 const jwt = require('jsonwebtoken'); // Para generar el token
+const rateLimit = require('express-rate-limit');
+
+const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutos
+    max: 5, // Máximo 5 intentos por IP
+    message: "Demasiados intentos de inicio de sesión. Inténtalo de nuevo en 15 minutos."
+});
+
 
 // RUTA 1: REGISTRO (POST /api/auth/register)
 router.post('/register', async (req, res) => {
@@ -40,7 +48,7 @@ router.post('/register', async (req, res) => {
 });
 
 // RUTA 2: LOGIN (POST /api/auth/login)
-router.post('/login', async (req, res) => {
+router.post('/login', loginLimiter, async (req, res) => {
     try {
         const { email, password } = req.body;
 

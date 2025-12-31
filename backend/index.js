@@ -5,13 +5,25 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config(); // Cargar variables de entorno
+const helmet = require('helmet'); // <--- Importar
+const mongoSanitize = require('express-mongo-sanitize');
 
 // 2. CONFIGURACIÓN INICIAL
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // 3. MIDDLEWARES (Funciones que se ejecutan antes de llegar a las rutas)
-app.use(cors()); // Permite peticiones desde otros dominios (ej. Angular)
+const corsOptions = {
+  origin: [
+    'http://localhost:4200', // Para que sigas trabajando en tu PC
+    'https://fix-it-orcin.vercel.app' // <--- PON AQUÍ TU URL EXACTA DE VERCEL (sin barra al final)
+  ],
+  optionsSuccessStatus: 200
+};
+
+app.use(helmet());
+app.use(mongoSanitize());
+app.use(cors(corsOptions)); // Permite peticiones desde otros dominios (ej. Angular)
 app.use(express.json()); // Permite que el servidor entienda JSON en el cuerpo de las peticiones
 
 // 4. RUTA DE PRUEBA
